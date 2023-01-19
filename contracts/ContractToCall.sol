@@ -6,10 +6,11 @@ contract ContactToCall {
 
     function foo(address _addr, uint256 _num) external returns(uint256 _gasUsed){
 
+        uint256 gasStart = gasleft();
+
         require(_num > 10, "Wrong number!");
         numbers[_addr] = _num;
 
-        _gasUsed = gasleft();
-
+        _gasUsed = (gasStart - gasleft()) + 23000;
     }
 }
